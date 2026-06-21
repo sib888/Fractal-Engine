@@ -2,7 +2,7 @@
 *.iml
 
 target/
-
+out/
 output_fractals/
 
 .DS_Store

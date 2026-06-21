@@ -11,16 +11,24 @@ public class Main {
         int maxIter = 3000;
         ImageSaver.maxIter = maxIter;
 
-        System.out.println("Начало расчета...");
-        long start = System.currentTimeMillis();
+        long start;
 
-        // Получаем тот самый массив чисел из пула потоков
         FractalGenerator generator = new FractalGenerator(formula, width, height, maxIter);
 
         if (formula == Formula.Mandelbrot) {
-            generator.generateFractalSet(21, 5);
+            int count = ConsoleManger.getMandelbrotCount();
+            int step = ConsoleManger.getMandelbrotStep();
+            int offset = ConsoleManger.getMandelbrotOffset();
+
+            System.out.println("Начало расчета...");
+            start = System.currentTimeMillis();
+
+            generator.generateFractalSet(count, step, offset);
         }
         else {
+            System.out.println("Начало расчета...");
+            start = System.currentTimeMillis();
+
             int[][] result = generator.generateFractal();
             ImageSaver.saveFractal(result, formula.toString());
         }

@@ -12,7 +12,6 @@ public class MandelbrotFormula implements FractalFormula{
 
     @Override
     public int calculatePixel(int x, int y, int width, int height, int maxIter) {
-        // Вычисляем соотношение сторон, чтобы картинку не сплющило
         double aspectRatio = (double) width / height;
 
         double cr = centerX + (x - width / 2.0) * zoom * aspectRatio / width;

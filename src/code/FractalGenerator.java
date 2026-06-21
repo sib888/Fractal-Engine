@@ -37,26 +37,21 @@ public class FractalGenerator {
     public int[][] generateFractal() throws Exception {
         int[][] image = new int[height][width];
 
-        // 1. Создаем пул потоков. Считаем, сколько ядер есть у процессора ПК
         int cores = Runtime.getRuntime().availableProcessors();
         ExecutorService executor = Executors.newFixedThreadPool(cores);
 
-        // Список "будущих" результатов (Future)
         List<Future<int[]>> futures = new ArrayList<>();
 
-        // 2. Нарезаем картинку на задачи и отправляем в пул
         for (int y = 0; y < height; y++) {
             FractalTask task = new FractalTask(y, width, height, maxIter, currentFormula);
-            Future<int[]> futureResult = executor.submit(task); // Поток забрал задачу в фон
+            Future<int[]> futureResult = executor.submit(task);
             futures.add(futureResult);
         }
 
-        // 3. Собираем результаты (метод future.get() ждет, пока поток досчитает)
         for (int y = 0; y < height; y++) {
             image[y] = futures.get(y).get();
         }
 
-        // 4. Обязательно тушим пул потоков по окончании работы
         executor.shutdown();
 
         return image;

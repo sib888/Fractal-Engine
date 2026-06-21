@@ -5,10 +5,10 @@ import code.formulas.FractalFormula;
 import java.util.concurrent.Callable;
 
 public class FractalTask implements Callable<int[]> {
-    private final int row;       // Какую строку считать
-    private final int width;     // Ширина картинки
-    private final int height;     // Ширина картинки
-    private final int maxIter;   // Максимальное число итераций (качество)
+    private final int row;
+    private final int width;
+    private final int height;
+    private final int maxIter;
     private final FractalFormula fractalFormula;
 
     public FractalTask(int row, int width, int height, int maxIter, FractalFormula fractalFormula) {

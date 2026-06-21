@@ -26,17 +26,50 @@ public class ConsoleManger {
             try {
                 o = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("Вы не правы.");
+                System.out.println("Нужно ввести целое число.");
                 scanner.next();
                 continue;
             }
             if (!options.containsKey(o)) {
-                System.out.println("Нет такой опции.");
+                System.out.println("Опции с номером " + o + " не найдено.");
             }
             else option = o;
         }
         System.out.println("------------------");
 
         return options.get(option);
+    }
+
+    public static int getMandelbrotCount() {
+        return getPositiveNum("Введите число изображений:");
+    }
+
+    public static int getMandelbrotStep() {
+        return getPositiveNum("Введите шаг(множитель) приближения:");
+    }
+
+    public static int getMandelbrotOffset() {
+        return getPositiveNum("Введите сдвиг N (фрактал предварительно приблизится N РАЗ):");
+    }
+
+    private static int getPositiveNum(String inputMessage) {
+        Scanner scanner = new Scanner(System.in);
+        int num = -1;
+
+        while (num < 0) {
+            System.out.print(inputMessage);
+            int o;
+            try {
+                o = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Нужно ввести положительное целое число.");
+                scanner.next();
+                continue;
+            }
+            if (o < 0) System.out.println("Нужно ввести положительное целое число.");
+            else num = o;
+        }
+
+        return num;
     }
 }

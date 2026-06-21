@@ -10,7 +10,6 @@ public class BurnungShipFormula implements FractalFormula{
         int iter = 0;
 
         while (zr * zr + zi * zi < 4.0 && iter < maxIter) {
-            // ВАЖНО: берем Math.abs от zr и zi перед расчетом!
             double absZr = Math.abs(zr);
             double absZi = Math.abs(zi);
 
