@@ -1,0 +1,9 @@
+.idea/
+*.iml
+
+target/
+
+output_fractals/
+
+.DS_Store
+Thumbs.db
